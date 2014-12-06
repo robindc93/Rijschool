@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Rijschool.Controllers
 {
+    [Authorize]
     public class KlantController : AccountController
     {
         
@@ -18,6 +19,8 @@ namespace Rijschool.Controllers
             return View();
         }
 
+        //
+        // GET: /Klant/Registreer
         [AllowAnonymous]
         public ActionResult Registreer()
         {
@@ -25,7 +28,7 @@ namespace Rijschool.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Klant/Registreer
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
