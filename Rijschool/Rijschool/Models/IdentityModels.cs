@@ -34,6 +34,7 @@ namespace Rijschool.Models
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
+        public virtual DbSet<Personeel> Personeel { get; set; }
         public virtual DbSet<Klant> Klanten { get; set; }
         public virtual DbSet<Instructeur> Instructeurs { get; set; }
         public virtual DbSet<Bestelling> Bestellingen { get; set; }

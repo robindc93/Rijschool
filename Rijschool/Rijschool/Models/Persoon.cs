@@ -17,6 +17,11 @@ namespace Rijschool.Models
         public string Gemeente { get; set; }
     }
 
+    public class Personeel : Persoon
+    {
+
+    }
+
     public class Klant : Persoon
     {
         public DateTime KlantSedert { get; set; }

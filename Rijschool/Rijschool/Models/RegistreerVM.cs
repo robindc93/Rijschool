@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Rijschool.Models
 {
-    public class KlantVM
+    public class RegistreerVM
     {
         [Required]
         [StringLength(100)]

@@ -10,6 +10,7 @@ using Rijschool.Models;
 
 namespace Rijschool.Controllers
 {
+    [Authorize(Roles="Personeel")]
     public class RijbewijsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

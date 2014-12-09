@@ -9,16 +9,8 @@ using System.Web.Mvc;
 
 namespace Rijschool.Controllers
 {
-    [Authorize]
-    public class KlantController : AccountController
+    public class PersoneelController : AccountController
     {
-        
-        // GET: Klant
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         //
         // GET: /Klant/Registreer
         [AllowAnonymous]
@@ -36,21 +28,20 @@ namespace Rijschool.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Klant { 
+                var user = new Personeel
+                {
                     Voornaam = model.Voornaam,
                     Familienaam = model.Familienaam,
                     Adres = model.Familienaam,
                     Gemeente = model.Gemeente,
                     Email = model.Email,
-                    UserName = model.Email,
-                    KlantSedert = DateTime.Now
+                    UserName = model.Email                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Wachtwoord);
                 if (result.Succeeded)
                 {
-                    var roleResult = UserManager.AddToRole(user.Id, "Klant");
-                    if (roleResult.Succeeded)
-                    {
+                    var roleResult = UserManager.AddToRole(user.Id, "Personeel");
+                    if (roleResult.Succeeded) {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
