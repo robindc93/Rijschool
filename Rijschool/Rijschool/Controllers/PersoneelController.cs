@@ -9,10 +9,17 @@ using System.Web.Mvc;
 
 namespace Rijschool.Controllers
 {
+    [Authorize(Roles="Personeel")]
     public class PersoneelController : AccountController
     {
+        //GET: Personeel
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         //
-        // GET: /Klant/Registreer
+        // GET: /Personeel/Registreer
         [AllowAnonymous]
         public ActionResult Registreer()
         {
@@ -20,7 +27,7 @@ namespace Rijschool.Controllers
         }
 
         //
-        // POST: /Klant/Registreer
+        // POST: /Personeel/Registreer
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
