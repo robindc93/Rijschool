@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 
 namespace Rijschool.Models
 {
@@ -11,9 +12,14 @@ namespace Rijschool.Models
 
     public class PersoneelDashboardVM
     {
-        public ICollection<Klant> Klanten { get; set; }
-        public ICollection<Instructeur> Instructeurs { get; set; }
+        public IPagedList<Klant> Klanten { get; set; }
+       
+        public IPagedList<Instructeur> Instructeurs { get; set; }
 
+        public int PageInstructeur { get; set; }
+
+        public int PageKlant { get; set; }
+        
         public int AantalKlanten { get; set; }
 
         public int AantalInstructeurs { get; set; }

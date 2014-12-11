@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Rijschool.Controllers
 {
@@ -14,13 +15,23 @@ namespace Rijschool.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         //GET: Personeel
-        public ActionResult Index()
+        public ActionResult Index(int? pageKlant, int? pageInstructeur)
         {
             PersoneelDashboardVM dash = new PersoneelDashboardVM();
             dash.AantalKlanten = db.Klanten.Count();
             dash.AantalInstructeurs = db.Instructeurs.Count();
-            dash.Klanten = db.Klanten.ToList();
-            dash.Instructeurs = db.Instructeurs.ToList();
+            
+
+            int pageSize = 10;
+            dash.PageKlant = (pageKlant ?? 1);
+            dash.PageInstructeur = (pageInstructeur ?? 1);
+
+            //dash.Instructeurs = db.Instructeurs.ToPagedList(pageNumber, pageSize);
+            var klanten = db.Klanten.ToList();
+            dash.Klanten = klanten.ToPagedList(dash.PageKlant, pageSize);
+            var instructeurs = db.Instructeurs.ToList();
+            dash.Instructeurs = instructeurs.ToPagedList(dash.PageInstructeur, pageSize);
+            
             return View(dash);
         }
 

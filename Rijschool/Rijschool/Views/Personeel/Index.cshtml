@@ -1,4 +1,6 @@
 ﻿@model Rijschool.Models.PersoneelDashboardVM
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Dashboard";
 }
@@ -97,6 +99,8 @@
                             }
                         </tbody>
                     </table>
+
+                   @Html.PagedListPager(Model.Klanten, pageKlant => Url.Action("Index", new { pageKlant, Model.PageInstructeur }))
                 </div>
                 <!-- /.table-responsive -->
             </div>
@@ -104,8 +108,8 @@
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-6 -->
-
+    <!--Einde Table Klanten-->
+<!--Table Instructeurs-->
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -133,6 +137,7 @@
                             }
                         </tbody>
                     </table>
+                    @Html.PagedListPager(Model.Instructeurs, pageInstructeur => Url.Action("Index", new { Model.PageKlant, pageInstructeur }))
                 </div>
                 <!-- /.table-responsive -->
             </div>
@@ -140,5 +145,5 @@
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-6 -->
+    <!-- Einde Table Instructeurs -->
 </div>
