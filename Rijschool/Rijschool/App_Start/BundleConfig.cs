@@ -21,11 +21,17 @@ namespace Rijschool
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/DataTables/jquery.dataTables.js",
+                      "~/Scripts/DataTables/dataTables.bootstrap.js",
+                      "~/Scripts/sb-admin-2.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/dataTables.bootstrap.css",
+                      "~/Content/sb-admin-2.css"));
+
         }
     }
 }

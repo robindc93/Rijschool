@@ -9,18 +9,23 @@ using System.Web.Mvc;
 
 namespace Rijschool.Controllers
 {
-    [Authorize(Roles="Personeel")]
+    [Authorize(Roles="Admin")]
     public class PersoneelController : AccountController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         //GET: Personeel
         public ActionResult Index()
         {
-            return View();
+            PersoneelDashboardVM dash = new PersoneelDashboardVM();
+            dash.AantalKlanten = db.Klanten.Count();
+            dash.AantalInstructeurs = db.Instructeurs.Count();
+            dash.Klanten = db.Klanten.ToList();
+            dash.Instructeurs = db.Instructeurs.ToList();
+            return View(dash);
         }
 
         //
         // GET: /Personeel/Registreer
-        [AllowAnonymous]
         public ActionResult Registreer()
         {
             return View();
@@ -29,7 +34,6 @@ namespace Rijschool.Controllers
         //
         // POST: /Personeel/Registreer
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Registreer(RegistreerVM model)
         {
