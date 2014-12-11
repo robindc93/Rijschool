@@ -22,7 +22,7 @@ namespace Rijschool.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Rijschool", throwIfV1Schema: false)
         {
         }
 
