@@ -20,13 +20,11 @@ namespace Rijschool.Controllers
             PersoneelDashboardVM dash = new PersoneelDashboardVM();
             dash.AantalKlanten = db.Klanten.Count();
             dash.AantalInstructeurs = db.Instructeurs.Count();
-            
 
             int pageSize = 10;
             dash.PageKlant = (pageKlant ?? 1);
             dash.PageInstructeur = (pageInstructeur ?? 1);
 
-            //dash.Instructeurs = db.Instructeurs.ToPagedList(pageNumber, pageSize);
             var klanten = db.Klanten.ToList();
             dash.Klanten = klanten.ToPagedList(dash.PageKlant, pageSize);
             var instructeurs = db.Instructeurs.ToList();
